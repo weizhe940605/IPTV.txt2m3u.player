@@ -34,9 +34,13 @@ jobs:
           #python ./scripts/extract.py --input t2m_output.m3u --output t2op.m3u --eoru ',huuc'
           #python ./scripts/deduplicate.py -i t2op.m3u -o t2output.m3u
 
-          wget https://raw.githubusercontent.com/lwzlinyi/ziyong/refs/heads/main/live2.m3u -O live2.m3u
+          wget https://raw.githubusercontent.com/lwzlinyi/ziyong/refs/heads/main/live2.m3u -O live2.m3u  -t 2 --waitretry=5
           python ./scripts/extract.py --input live2.m3u --output t2op.m3u --eoru ',huuc'
           python ./scripts/deduplicate.py -i t2op.m3u -o t2output.m3u
+
+          wget https://github.com/mytv-android/iptv-api/raw/refs/heads/master/output/result.m3u -O mytv.m3u  -t 2 --waitretry=5
+          python ./scripts/m3u_merger.py -i mytv.m3u -o mytv_merged.m3u          
+          
           
           python ./scripts/m3u_merger.py -i t2m_output.m3u -o t2merged.m3u
 
@@ -60,6 +64,7 @@ jobs:
         mv ../t1output.m3u ./sh.lnott.top.m3u
         mv ../t2output.m3u ./huuc_ipv6.m3u
         mv ../t2merged.m3u ./t2m_output_merged.m3u
+        mv ../mytv_merged.m3u ./mytv_merged.m3u
         
         git add .
         if git diff --cached --quiet; then
