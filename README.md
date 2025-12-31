@@ -28,3 +28,8 @@ https://gh-proxy.org/github.com/ioptu/IPTV.txt2m3u.player/blob/main/chrome%20ext
 
 
 （Github文件加速，将GitHub链接转换为多区域加速链接，解决GitHub访问慢、下载失败等问题 ）
+
+
+---
+直播源来自互联网，仅供个人欣赏，请勿商用。
+---
