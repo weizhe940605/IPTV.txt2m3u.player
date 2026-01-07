@@ -80,7 +80,7 @@ jobs:
         cd "$REPO_NAME" || exit 1  # 强制失败时退出
 
         # 后续操作...
-        mv ../*.m3u ./backup/
+        mv ./*.m3u ./backup/
         # 移动migu文件（总是执行）
         mv ../mg_merged.m3u ./migu_merged.m3u
         
