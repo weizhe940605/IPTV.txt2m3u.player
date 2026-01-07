@@ -52,7 +52,7 @@ jobs:
           #python ./scripts/url_sorter.py -i qtv_m.m3u -o qtv_ms.m3u -k 'HD&auth=666858,auth=66615415'
           #wget https://github.com/ioptu/IPTV.txt2m3u.player/raw/dcf291331d4e49d18d519e386d11c4278c76ccf2/yp.qqqtv.top.m3u -O qtv.m3u  -t 2 --waitretry=5
           
-
+          wget https://github.com/xiaoran29/core/raw/refs/heads/main/output/lite.m3u -O lite.m3u  -t 2 --waitretry=5
           python ./scripts/extract.py --input lite.m3u --output t3op2.m3u --eoru ',catvod.com' -n 
           python ./scripts/m3u_merger.py -i t3op2.m3u -o t3op2_merged.m3u
           python ./scripts/url_sorter.py -i t3op2_merged.m3u -o t3op2_ms.m3u -k 'CCTV-' -r
