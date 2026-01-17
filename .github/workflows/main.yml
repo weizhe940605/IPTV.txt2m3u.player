@@ -21,18 +21,18 @@ jobs:
     - name: Install Dependencies
       run: pip install requests
 
-    # --- 块1: Migu 处理 (即使失败也会继续执行后续块) ---
+    # --- 块1: Migu 处理---
     - name: Process Migu Files
-      continue-on-error: true
+      continue-on-error: true     # 即使失败也会继续执行后续块 
       run: |
         wget https://github.com/ioptu/migu_video/raw/refs/heads/main/migu.txt -O migu.m3u -t 2 --waitretry=5
         python ./scripts/m3u_mergerng.py -i migu.m3u -o mg_m.m3u
         python ./scripts/m3u_merger.py -i mg_m.m3u -o mg_merged.m3u
         python ./scripts/add_channel.py -i mg_merged.m3u -o mg_merged.m3u -a "搜狐剧场,https://hdl-vip-ws.qf.56.com/live/lc_11730.flv"
         
-    # --- 块2: huuc 源处理 (只有在 ONLY_UPDATE_MIGU 为 false 时运行) ---
+    # --- 块2: huuc 源处理  ---
     - name: Process luuc Files
-      if: env.ONLY_UPDATE_MIGU != 'true'
+      if: env.ONLY_UPDATE_MIGU != 'true'    # 只有在 ONLY_UPDATE_MIGU 为 false 时运行 
       continue-on-error: true
       run: |
             #无需频繁更新
@@ -83,7 +83,7 @@ jobs:
             #python ./scripts/url_sorter.py -i qtv.m3u -o qtvop.m3u -k "CCTV-5%2B" -ch "CCTV5" -rn "CCTV5+" 
             #python ./scripts/m3u_merger.py -i qtvop.m3u -o qtvop_merged.m3u
             #python ./scripts/url_sorter.py -i qtvop_merged.m3u -o qtvop_ms.m3u -k 'HD&auth=666858,auth=66615415'
-        # 这一块如果任何命令失败，由于 continue-on-error，Action 会继续执行下一步
+        
 
     # --- 块6: Catvod 处理 ---
     - name: Process Catvod Files
