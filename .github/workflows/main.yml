@@ -65,7 +65,16 @@ jobs:
             node ./scripts/txt2m3u.js -i gtd.txt -o t4op.m3u
             python ./scripts/extract.py --input t4op.m3u --output tv4output.m3u --eoru ',cdn6.101.qzz.io' -n
             #python ./scripts/m3u_merger.py -i tv4output.m3u -o tv4output_merged.m3u
-
+            
+    - name: Process 101.qzz.io Files
+      if: env.ONLY_UPDATE_MIGU != 'true'
+      continue-on-error: true
+      run: |
+            #无需频繁更新
+            wget https://github.com/ioptu/migu_video/raw/ea459c3e6ce43d99aca23ef4524e649c7d71394d/%E6%B8%AF%E6%BE%B3%E9%A2%91%E9%81%93.txt -O hm.txt  -t 2 --waitretry=5
+            node ./scripts/txt2m3u.js -i hm.txt -o tv5op.m3u
+            python ./scripts/m3u_merger.py -i tv5op.m3u -o tv5op_merged.m3u
+            
     # --- 块5: qqqtv 源处理  ---
     - name: Process Lite Files
       if: env.ONLY_UPDATE_MIGU != 'false'
@@ -147,6 +156,8 @@ jobs:
           [ -f ../t3op2_ms.m3u ] && mv ../t3op2_ms.m3u ./catvod.com_merged.m3u || true
           [ -f ../t0op_ms.m3u ] && mv ../t0op_ms.m3u ./tv_merged.m3u || true
           [ -f ../ttvop_ms.m3u ] && mv ../ttvop_ms.m3u ./ttv_merged.m3u || true
+          [ -f ../tv5op.m3u ] && mv ../tv5op.m3u ./港澳.m3u || true
+          [ -f ../tv5op_merged.m3u ] && mv ../tv5op_merged.m3u ./港澳_merged.m3u || true
         fi
 
         git add .
