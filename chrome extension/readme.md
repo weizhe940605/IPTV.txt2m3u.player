@@ -12,7 +12,7 @@
 ---
 
 ## .m3u8
-> Chrome 已原生支持 .m3u8 链接，但部分视频可能出现有声无画；此外，若链接不含 .m3u8 关键字且 Content-Type 非标准 HLS MIME，Chrome 亦无法播放。 相比之下，本扩展（基于 [hls.js-v1.6.15](https://github.com/video-dev/hls.js/blob/master/README.md)）兼容性更强，可规避上述问题。
+> Chrome 已原生支持 .m3u8 链接，但若链接不含 .m3u8 关键字且 Content-Type 非标准 HLS MIME，Chrome 亦无法播放。 相比之下，本扩展（基于 [hls.js-v1.6.15](https://github.com/video-dev/hls.js/blob/master/README.md)）兼容性更强，可规避上述问题。
 >
 
 ## http
