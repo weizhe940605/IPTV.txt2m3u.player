@@ -42,6 +42,7 @@ jobs:
       run: |
             wget https://httop.top/hotel.m3u -O httop.m3u  -t 2 --waitretry=5
             python ./scripts/m3u_merger.py -i httop.m3u -o httop_merged.m3u
+            python ./scripts/url_sorter.py -i httop_merged.m3u -o httop_merged.m3u -k '//175' -r
 
 
     # ---  huuc 源处理  ---
